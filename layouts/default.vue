@@ -5,5 +5,6 @@
     <div class="bg-[#1e232b] min-h-screen w-full text-white">
         <AppHeader />
         <slot />
+        <AppFooter />
     </div>
 </template>
