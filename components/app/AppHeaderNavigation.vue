@@ -35,7 +35,7 @@ const links: linkType[] = [
 
 <template>
     <ul class="flex">
-        <li v-for="link in links" class="p-3 font-medium uppercase relative group hover:bg-neutral-600 rounded-sm">
+        <li v-for="link in links" class="p-3 font-medium uppercase relative group hover:bg-[#1e232b] rounded-sm">
             <template v-if="link.child && link.child.length > 0">
                 <a href="" class="flex items-center">
                     <Icon v-if="link.icon" :name="link.icon" size="25" class="mr-4" />
@@ -44,7 +44,7 @@ const links: linkType[] = [
                 <ul
                     class="p-0 group-hover:p-1 absolute bg-white text-black shadow-2xl rounded-md max-h-0 group-hover:max-h-[600px] overflow-hidden transition-all ease-in-out">
                     <li v-for="childNav in categoriesLinks"
-                        class=" py-1 px-3 w-[150px] hover:bg-neutral-500 hover:text-white rounded-sm">
+                        class=" py-1 px-3 w-[150px] hover:bg-[#1e232b] hover:text-white rounded-sm">
                         <a :href="childNav.to" class="flex items-center">
                             <span class="mt-1">{{ childNav.label }}</span>
                         </a>

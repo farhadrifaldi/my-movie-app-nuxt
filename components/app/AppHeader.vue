@@ -5,7 +5,7 @@ import AppHeaderNavigation from './AppHeaderNavigation.vue';
 </script>
 
 <template>
-    <div class="bg-neutral-700">
+    <div class="bg-white/5">
         <div class="container mx-auto flex items-center justify-between sticky h-16">
             <h1><img src="/images/MoovieTime-Logo.svg" alt="movie-logo"></h1>
             <AppHeaderSearch />
