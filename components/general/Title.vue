@@ -1,6 +1,6 @@
 <template>
   <div class="relative font-medium">
-    <hr class="border border-[#E74C3C] w-[100px]" />
+    <hr class="border-2 border-[#E74C3C] w-[100px]" />
     <h1 v-if="level === '1'" class="py-3 text-6xl">
       <slot />
     </h1>
