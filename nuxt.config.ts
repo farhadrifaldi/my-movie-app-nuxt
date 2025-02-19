@@ -16,6 +16,7 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/fonts',
-    '@nuxt/icon'
+    '@nuxt/icon',
+    '@nuxtjs/device'
   ],
 })
