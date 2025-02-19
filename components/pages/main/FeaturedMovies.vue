@@ -1,5 +1,5 @@
 <template>
-  <Carousel v-bind="carouselConfig">
+  <Carousel v-bind="carouselConfig" class="py-5 mb-10">
     <Slide v-for="slide in 4" :key="slide">
       <div class="carousel__item h-[400px] flex items-center">
         <img :src="sampleMovie.thumbnailLink" class="object-cover w-full h-[300px]" />
