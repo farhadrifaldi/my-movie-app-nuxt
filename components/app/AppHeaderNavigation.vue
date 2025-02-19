@@ -1,40 +1,10 @@
 <script setup lang="ts">
-
-type linkType = {
-    label: string;
-    to: string;
-    icon?: string;
-    child?: linkType[];
-}
-
-const categoriesLinks: linkType[] = [{
-    label: 'action',
-    to: '#'
-}, {
-    label: 'adventure',
-    to: '#'
-}, {
-    label: 'animation',
-    to: '#'
-}, {
-    label: 'comedy',
-    to: '#'
-}, {
-    label: 'crime',
-    to: '#'
-}]
-
-const links: linkType[] = [
-    { label: 'Categories', to: "/", icon: "mynaui:grid-solid", child: categoriesLinks },
-    { label: 'Movies', to: "/" },
-    { label: 'Show', to: "/" },
-    { label: 'Login', to: "/" }
-]
+import { links } from "@/utils/constants/nagivations"
 
 </script>
 
 <template>
-    <ul class="flex">
+    <ul class="hidden md:flex">
         <li v-for="link in links" class="p-3 font-medium uppercase relative group hover:bg-[#1e232b] rounded-sm">
             <template v-if="link.child && link.child.length > 0">
                 <a href="" class="flex items-center">
@@ -43,7 +13,7 @@ const links: linkType[] = [
                 </a>
                 <ul
                     class="p-0 group-hover:p-1 absolute bg-white text-black shadow-2xl rounded-md max-h-0 group-hover:max-h-[600px] overflow-hidden transition-all ease-in-out">
-                    <li v-for="childNav in categoriesLinks"
+                    <li v-for="childNav in link.child"
                         class=" py-1 px-3 w-[150px] hover:bg-[#1e232b] hover:text-white rounded-sm">
                         <a :href="childNav.to" class="flex items-center">
                             <span class="mt-1">{{ childNav.label }}</span>
