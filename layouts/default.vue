@@ -2,9 +2,9 @@
 // import AppHeader from "@/src/components/AppFooter.vue"
 </script>
 <template>
-    <div class="bg-[#1e232b] min-h-screen w-full text-white">
-        <AppHeader />
+    <AppHeader />
+    <div class="container mt-16 py-4 mx-auto min-h-[calc(100vh-100px)]">
         <slot />
-        <AppFooter />
     </div>
+    <AppFooter />
 </template>
