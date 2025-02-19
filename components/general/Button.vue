@@ -1,14 +1,17 @@
 <template>
-  <RouterLink v-if="to" class="py-1 px-8 bg-red-600 rounded-3xl cursor-pointer font-medium" :to="to">
+  <RouterLink v-if="to"
+    :class="`py-1 px-8 rounded-3xl cursor-pointer font-medium ${!type || type === 'primary' ? 'bg-red-600' : 'bg-[#15181e]'}`"
+    :to="to">
     <slot></slot>
   </RouterLink>
-  <button v-else class="py-1 px-8 bg-red-600 rounded-3xl cursor-pointer font-medium">
+  <button v-else
+    :class="`py-1 px-8 rounded-3xl cursor-pointer font-medium ${!type || type === 'primary' ? 'bg-red-600' : 'bg-[#15181e]'}`">
     <slot></slot>
   </button>
 </template>
 
 <script lang="ts" setup>
-const { to } = defineProps<{ to?: string }>()
+const { to, type } = defineProps<{ to?: string, type?: 'primary' | 'secondary' }>()
 </script>
 
 <style></style>
