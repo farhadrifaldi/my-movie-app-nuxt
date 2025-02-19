@@ -1,3 +1,4 @@
 <template>
-    halo aku ada disini
+    <PagesMainFeaturedMovies />
+    <PagesMainDiscoverMovies />
 </template>
