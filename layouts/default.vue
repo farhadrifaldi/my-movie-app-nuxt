@@ -2,7 +2,7 @@
 // import AppHeader from "@/src/components/AppFooter.vue"
 </script>
 <template>
-    <div class="bg-neutral-800 min-h-screen w-full text-white">
+    <div class="bg-[#1e232b] min-h-screen w-full text-white">
         <AppHeader />
         <slot />
     </div>
