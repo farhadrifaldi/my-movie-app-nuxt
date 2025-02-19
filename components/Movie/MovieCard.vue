@@ -10,7 +10,7 @@
             <Icon name="material-symbols:star" class="text-yellow-400 mr-2" />{{ rating }}
           </p>
           <p class="font-medium text-lg mt-6 ">{{ genre }}</p>
-          <GeneralButton class="mt-6">View</GeneralButton>
+          <GeneralButton class="mt-6" active>View</GeneralButton>
         </div>
       </div>
     </div>
