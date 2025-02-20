@@ -1,13 +1,7 @@
 import tmdbApi from '../utils/axios';
-import type { Genre, Movie, SortBy } from '~/utils/types/movies';
+import type { Genre, Movie, SortBy, TmdbGenreResponse, TmdbResponse } from '~/utils/types/movies';
 
-interface TmdbResponse {
-  results: Movie[];
-}
 
-interface TmdbGenreResponse {
-  results: Genre[]
-}
 
 interface GetMovieProps {
   page?: number;
