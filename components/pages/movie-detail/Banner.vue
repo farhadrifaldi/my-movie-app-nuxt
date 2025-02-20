@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-end bg-[url(/images/movie-image-banner-sample.jpg)] backdrop-brightness-75 bg-cover h-[500px]">
+  <div class="flex items-end bg-[url(/images/movie-image-banner-sample.jpg)] backdrop-brightness-75 bg-cover h-[550px] -mt-16">
     <div class="backdrop-brightness-50 w-full h-full flex items-end flex-wrap">
       <div class="w-full">
         <div class="container mx-auto w-full grid grid-cols-12 items-center text-sm mb-5">
