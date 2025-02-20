@@ -19,6 +19,9 @@ export const useGenreStore = defineStore('movie', {
                 }
             })
             return tmpLinks
+        },
+        getMappedGenres: (state) => {
+            return (genre_ids: number[], count?: number) => state.genres.filter((genre) => genre_ids.includes(genre.id)).slice(0, count ?? genre_ids.length).map((genre) => genre.name).join(',')
         }
     },
     actions: {
