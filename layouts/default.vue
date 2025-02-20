@@ -3,7 +3,7 @@
 </script>
 <template>
     <AppHeader />
-    <div class="mt-16 py-4 mx-auto min-h-[calc(100vh-100px)]">
+    <div class="mt-12 py-4 mx-auto min-h-[calc(100vh-100px)]">
         <slot />
     </div>
     <AppFooter />
