@@ -2,6 +2,13 @@
 import { links } from "@/utils/constants/nagivations"
 const open = ref(false)
 
+const genreStore = useGenreStore()
+links[0].child = genreStore.getGenres.map((cat) => {
+    return {
+        label: cat.name,
+        to: '/movies?category=' + cat.id,
+    }
+})
 </script>
 
 <template>

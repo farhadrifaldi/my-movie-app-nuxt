@@ -14,6 +14,9 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
   modules: [
     '@nuxt/fonts',
     '@nuxt/icon',

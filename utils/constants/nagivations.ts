@@ -24,7 +24,7 @@ export const categoriesLinks: linkType[] = [{
 
 export const links: linkType[] = [
     { label: 'Categories', to: "/", icon: "mynaui:grid-solid", child: categoriesLinks },
-    { label: 'Movies', to: "/" },
-    { label: 'Show', to: "/" },
+    { label: 'Movies', to: "/movies" },
+    { label: 'Show', to: "/movies" },
     { label: 'Login', to: "/" }
 ]

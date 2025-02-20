@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { links } from "@/utils/constants/nagivations"
+import { useGenreStore } from "~/stores";
 
+const genreStore = useGenreStore()
+
+links[0].child = genreStore.getGenres.map((cat) => {
+    return {
+        label: cat.name,
+        to: '/movies?category=' + cat.id,
+    }
+})
 </script>
 
 <template>
@@ -12,7 +21,7 @@ import { links } from "@/utils/constants/nagivations"
                     {{ link.label }}
                 </a>
                 <ul
-                    class="p-0 group-hover:p-1 absolute bg-white text-black shadow-2xl rounded-md max-h-0 group-hover:max-h-[600px] overflow-hidden transition-all ease-in-out">
+                    class="p-0 group-hover:p-1 absolute bg-white text-black shadow-2xl rounded-md max-h-0 group-hover:max-h-screen overflow-hidden transition-all ease-in-out">
                     <li v-for="childNav in link.child"
                         class=" py-1 px-3 w-[150px] hover:bg-[#1e232b] hover:text-white rounded-sm">
                         <a :href="childNav.to" class="flex items-center">
