@@ -4,17 +4,12 @@ import { useGenreStore } from "~/stores";
 
 const genreStore = useGenreStore()
 
-links[0].child = genreStore.getGenres.map((cat) => {
-    return {
-        label: cat.name,
-        to: '/movies?category=' + cat.id,
-    }
-})
 </script>
 
 <template>
     <ul class="hidden md:flex">
-        <li v-for="link in links" class="p-3 font-medium uppercase relative group hover:bg-[#1e232b] rounded-sm">
+        <li v-for="link in genreStore.getLinks"
+            class="p-3 font-medium uppercase relative group hover:bg-[#1e232b] rounded-sm">
             <template v-if="link.child && link.child.length > 0">
                 <a href="" class="flex items-center">
                     <Icon v-if="link.icon" :name="link.icon" size="25" class="mr-4" />

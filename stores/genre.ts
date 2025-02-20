@@ -1,5 +1,6 @@
 import axios, { type AxiosResponse } from "axios";
 import { defineStore } from "pinia";
+import { links } from "~/utils/constants/nagivations";
 import type { Genre, TmdbGenreResponse } from "~/utils/types/movies";
 
 export const useGenreStore = defineStore('movie', {
@@ -8,7 +9,17 @@ export const useGenreStore = defineStore('movie', {
         genres: [] as Genre[]
     }),
     getters: {
-        getGenres: (state) => state.genres
+        getGenres: (state) => state.genres,
+        getLinks: (state) => {
+            const tmpLinks = Object.assign({}, links)
+            tmpLinks[0].child = state.genres.map((cat) => {
+                return {
+                    label: cat.name,
+                    to: '/movies?category=' + cat.id,
+                }
+            })
+            return tmpLinks
+        }
     },
     actions: {
         async fetchGenres() {
