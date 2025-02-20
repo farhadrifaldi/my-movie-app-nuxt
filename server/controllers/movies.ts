@@ -1,5 +1,5 @@
 import tmdbApi from '../utils/axios';
-import type { Genre, Movie, SortBy, TmdbGenreResponse, TmdbResponse } from '~/utils/types/movies';
+import type { Genre, Movie, SortBy, TmdbGenreResponse, TmdbMovieReviewResponse, TmdbResponse } from '~/utils/types/movies';
 
 
 
@@ -36,7 +36,7 @@ export const getPopularMovies = async () => {
 
 export const getSearchMovies = async (query: string) => {
   try {
-    const { data } = await tmdbApi.get<TmdbResponse>('/search/movie/', {
+    const { data } = await tmdbApi.get<TmdbResponse>('/search/movie', {
       params: {
         query: query
       }
@@ -66,6 +66,19 @@ export const getGenresMovies = async () => {
   try {
     const { data } = await tmdbApi.get<TmdbGenreResponse>('/genre/movie/list');
     return data
+  } catch (error) {
+    throw error
+  }
+};
+
+export const getMovieReviews = async (id?: string) => {
+  try {
+    if (id) {
+      const { data } = await tmdbApi.get<TmdbMovieReviewResponse>(`/movie/${id}/reviews`);
+      return data
+    } else {
+      throw new Error('Movie id is required')
+    }
   } catch (error) {
     throw error
   }
