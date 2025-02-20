@@ -14,9 +14,9 @@
             </div>
             <div class="grid grid-cols-2 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 gap-6">
                 <MovieCard v-if="data && data?.results.length > 0" v-for="movie in data?.results.slice(0, 10)"
-                    :to="`/movies/${movie.id}`"
-                    :rating="movie.vote_average.toString()" :title="movie.title"
-                    :year="$dayjs(movie.release_date).format('YYYY')" genre="Action"
+                    :to="`/movies/${movie.id}`" :rating="movie.vote_average.toString()" :title="movie.title"
+                    :year="$dayjs(movie.release_date).format('YYYY')"
+                    :genre="genreStore.getMappedGenres(movie.genre_ids, 1)"
                     :image-path="TMDB_IMAGE_BASE_PATH + movie.poster_path" />
             </div>
         </div>
@@ -29,6 +29,7 @@ import { useQuery } from '@tanstack/vue-query'
 import axios, { type AxiosResponse } from 'axios';
 import { TMDB_IMAGE_BASE_PATH } from '~/utils/constants/string'
 
+const genreStore = useGenreStore()
 const sortBy = ref<SortBy>(SortBy.PopularityDesc)
 
 const fetcher = async (sortBy: string): Promise<AxiosResponse<TmdbResponse, any>> => await axios.get('/api/movies/', {
