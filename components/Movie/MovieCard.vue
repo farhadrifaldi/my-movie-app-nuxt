@@ -9,8 +9,8 @@
           <p class="text-center text-3xl font-semibold flex items-center justify-center">
             <Icon name="material-symbols:star" class="text-yellow-400 mr-2" />{{ rating }}
           </p>
-          <p class="font-medium text-lg mt-6 ">{{ genre }}</p>
-          <GeneralButton class="mt-6" :to="to" active>View</GeneralButton>
+          <p class="font-medium text-lg my-6 ">{{ genre }}</p>
+          <GeneralButton :to="to" active>View</GeneralButton>
         </div>
       </div>
     </div>
