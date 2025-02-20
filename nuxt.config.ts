@@ -18,6 +18,8 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxtjs/device',
-    'vue3-carousel-nuxt'
+    'vue3-carousel-nuxt',
+    '@pinia/nuxt',
+    'dayjs-nuxt',
   ],
 })
