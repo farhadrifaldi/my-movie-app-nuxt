@@ -1,17 +1,18 @@
 <template>
   <Carousel v-bind="carouselConfig" class="py-5 mb-10">
-    <Slide v-for="slide in 4" :key="slide">
+    <Slide v-if="data && data.results.length > 0" v-for="slide in data.results.slice(0, 4)" :key="slide.id">
       <div class="carousel__item h-[400px] flex items-center">
-        <img :src="sampleMovie.thumbnailLink" class="object-cover w-full h-[300px]" />
+        <img :src="'https://image.tmdb.org/t/p/w500' + slide.poster_path" class="object-cover w-full h-[300px]" />
         <div class="bg-black px-4 py-6 h-[280px] overflow-hidden">
           <p class="font-semibold flex items-center justify-start mb-1">
-            <Icon name="material-symbols:star" class="text-yellow-400 mr-2" />{{ sampleMovie.rating }}
+            <Icon name="material-symbols:star" class="text-yellow-400 mr-2" />{{ slide.vote_average }}
           </p>
-          <p class="text-2xl font-medium mb-2">{{ sampleMovie.title }}</p>
-          <p class="mb-2 flex items-center">{{ sampleMovie.year }}
-            <Icon name="icon-park-outline:dot" class="mx-2 text-neutral-400" size="18" />{{ sampleMovie.genre }}
+          <p class="text-2xl font-medium mb-2">{{ slide.title }}</p>
+          <p class="mb-2 flex items-center">{{ $dayjs(slide.release_date).format('YYYY') }}
+            <Icon name="icon-park-outline:dot" class="mx-2 text-neutral-400" size="18" />{{ slide.genre_ids.join(', ')
+            }}
           </p>
-          <p class="text-sm">{{ sampleMovie.description }}</p>
+          <p class="text-sm">{{ slide.overview }}</p>
         </div>
       </div>
     </Slide>
@@ -25,7 +26,19 @@
 <script lang="ts" setup>
 import 'vue3-carousel/carousel.css'
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
-import { movies } from '~/utils/types/movies';
+import { type TmdbResponse } from '~/utils/types/movies';
+import { useQuery } from '@tanstack/vue-query'
+import axios, { type AxiosResponse } from 'axios';
+
+const fetcher = async (): Promise<AxiosResponse<TmdbResponse, any>> => await axios.get('/api/movies/popular')
+
+
+const { data } = useQuery({
+  queryKey: ['popular-movies'], queryFn: async (): Promise<TmdbResponse> => {
+    const { data } = await fetcher()
+    return data
+  }
+})
 
 const { isMobile } = useDevice()
 
@@ -35,7 +48,7 @@ const carouselConfig = {
   gap: 30
 }
 
-const sampleMovie = movies[0]
+
 </script>
 
 <style>
