@@ -1,20 +1,23 @@
 <template>
   <Carousel v-bind="carouselConfig" class="py-5 mb-10">
     <Slide v-if="data && data.results.length > 0" v-for="slide in data.results.slice(0, 4)" :key="slide.id">
-      <div class="carousel__item h-[400px] flex items-center">
-        <img :src="'https://image.tmdb.org/t/p/w500' + slide.poster_path" class="object-cover w-full h-[300px]" />
-        <div class="bg-black px-4 py-6 h-[280px] overflow-hidden">
-          <p class="font-semibold flex items-center justify-start mb-1">
-            <Icon name="material-symbols:star" class="text-yellow-400 mr-2" />{{ slide.vote_average }}
-          </p>
-          <p class="text-2xl font-medium mb-2">{{ slide.title }}</p>
-          <p class="mb-2 flex items-center">{{ $dayjs(slide.release_date).format('YYYY') }}
-            <Icon name="icon-park-outline:dot" class="mx-2 text-neutral-400" size="18" />{{ slide.genre_ids.join(', ')
-            }}
-          </p>
-          <p class="text-sm">{{ slide.overview }}</p>
+      <RouterLink :to="`/movies/${slide.id}`">
+        <div class="carousel__item h-[400px] flex items-center">
+          <img :src="'https://image.tmdb.org/t/p/w500' + slide.poster_path" class="object-cover w-full h-[300px]" />
+          <div class="bg-black px-4 py-6 h-[280px] overflow-hidden">
+            <p class="font-semibold flex items-center justify-start mb-1">
+              <Icon name="material-symbols:star" class="text-yellow-400 mr-2" />{{ slide.vote_average }}
+            </p>
+            <p class="text-2xl font-medium mb-2">{{ slide.title }}</p>
+            <p class="mb-2 flex items-center">{{ $dayjs(slide.release_date).format('YYYY') }}
+              <Icon name="icon-park-outline:dot" class="mx-2 text-neutral-400" size="18" />{{
+                genreStore.getMappedGenres(slide.genre_ids)
+              }}
+            </p>
+            <p class="text-sm">{{ slide.overview }}</p>
+          </div>
         </div>
-      </div>
+      </RouterLink>
     </Slide>
 
     <template #addons>
@@ -30,6 +33,7 @@ import { type TmdbResponse } from '~/utils/types/movies';
 import { useQuery } from '@tanstack/vue-query'
 import axios, { type AxiosResponse } from 'axios';
 
+const genreStore = useGenreStore()
 const fetcher = async (): Promise<AxiosResponse<TmdbResponse, any>> => await axios.get('/api/movies/popular')
 
 

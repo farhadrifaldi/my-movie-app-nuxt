@@ -14,6 +14,7 @@
             </div>
             <div class="grid grid-cols-2 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 gap-6">
                 <MovieCard v-if="data && data?.results.length > 0" v-for="movie in data?.results.slice(0, 10)"
+                    :to="`/movies/${movie.id}`"
                     :rating="movie.vote_average.toString()" :title="movie.title"
                     :year="$dayjs(movie.release_date).format('YYYY')" genre="Action"
                     :image-path="TMDB_IMAGE_BASE_PATH + movie.poster_path" />
