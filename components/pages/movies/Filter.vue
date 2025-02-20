@@ -12,27 +12,43 @@
         Genres
       </div>
       <div class="font-medium py-4 px-4 border-b border-white/10">
-        <GeneralCheckbox v-for="genre in genres" v-model="checkedValue" :label="genre" :value="genre"
-          class="mb-2 capitalize" />
+        <GeneralCheckbox v-for="genre in genreStore.getGenres" v-model="checkedValue" :label="genre.name"
+          :value="genre.id.toString()" class="mb-2 capitalize" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { genres } from '~/utils/constants/movies';
+import { SortBy } from '~/utils/types/movies';
+
+
+const genreStore = useGenreStore()
+
+const emit = defineEmits<{
+  (e: 'onChangeSortBy', value: SortBy): void,
+  (e: 'onChangeGenres', value: string[]): void
+}>();
 
 const open = ref<boolean>(false)
 const checkedValue = ref<string[]>([])
-const selectedPopularity = ref<string>("")
+const selectedPopularity = ref<SortBy>()
+
+watch(selectedPopularity, (value) => {
+  emit('onChangeSortBy', value)
+})
+
+watch(checkedValue, (val) => {
+  emit('onChangeGenres', val)
+})
 
 const popularityOption = [
-  { label: 'Popularity Ascending', value: 'Popularity Ascending' },
-  { label: 'Popularity Descending', value: 'Popularity Descending' },
-  { label: 'Release Date Ascending', value: 'Release Date Ascending' },
-  { label: 'Release Date Decending', value: 'Release Date Decending' },
-  { label: 'Rating Ascending', value: 'Rating Ascending' },
-  { label: 'Rating Decending', value: 'Rating Decending' }
+  { label: 'Popularity Ascending', value: SortBy.PopularityAsc },
+  { label: 'Popularity Descending', value: SortBy.PopularityDesc },
+  { label: 'Release Date Ascending', value: SortBy.ReleaseDateAsc },
+  { label: 'Release Date Decending', value: SortBy.ReleaseDateDesc },
+  { label: 'Rating Ascending', value: SortBy.VoteAverageAsc },
+  { label: 'Rating Decending', value: SortBy.VoteAverageDesc }
 ]
 </script>
 

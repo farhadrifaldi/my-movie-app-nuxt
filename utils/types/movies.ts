@@ -60,5 +60,5 @@ export interface TmdbResponse {
 }
 
 export interface TmdbGenreResponse {
-    results: Genre[]
+    genres: Genre[]
 }
