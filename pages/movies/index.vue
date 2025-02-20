@@ -4,10 +4,10 @@
     <div class="container mx-auto py-8">
       <GeneralTitle level="3">Movies</GeneralTitle>
       <div class="grid grid-cols-12 gap-10 mt-8">
-        <div class="col-span-3">
+        <div class="col-span-12 lg:col-span-3">
           <PagesMoviesFilter />
         </div>
-        <div class="col-span-9">
+        <div class="col-span-12 lg:col-span-9">
           <PagesMoviesCards @load-more="onLoadMore" />
         </div>
       </div>

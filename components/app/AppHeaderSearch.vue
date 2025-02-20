@@ -5,7 +5,7 @@ const text = ref("")
 </script>
 
 <template>
-    <div class="relative w-full md:w-1/2">
+    <div class="relative w-full lg:w-1/2">
         <span class="absolute left-2 top-2"><img src="/images/movie-icon.svg" /></span>
         <input v-model="text" type="text" class="bg-[rgb(30,35,43)] border-0 h-10 rounded-sm w-full px-10"
             placeholder="Find Movie" />
