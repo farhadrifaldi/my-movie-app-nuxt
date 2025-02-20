@@ -1,6 +1,6 @@
 <template>
   <div class="relative group">
-    <span class="bg-black/50 absolute top-1 right-1 font-semibold px-3 py-1 z-20">{{ rating }}</span>
+    <span class="bg-black/80 absolute top-0 right-0 font-semibold px-3 py-1 z-20">{{ rating }}</span>
     <div class="w-full h-[330px] relative">
       <img :src="imagePath ?? ''" class="object-cover w-full h-full" />
       <div
