@@ -20,8 +20,16 @@ export interface Movie {
     popularity: number;
     original_language: string;
     genre_ids: number[];
+    genres: {
+        id: number;
+        name: string;
+    }[],
     adult: boolean;
     video: boolean;
+    production_companies: { name: string }[];
+    status: string;
+    budget: number;
+
 }
 
 export enum SortBy {
@@ -61,4 +69,19 @@ export interface TmdbResponse {
 
 export interface TmdbGenreResponse {
     genres: Genre[]
+}
+
+export interface MovieReview {
+    author: string;
+    author_details: {
+        avatar_path: string;
+        name: string;
+        rating: number;
+    }
+    created_at: string;
+    content: string;
+}
+
+export interface TmdbMovieReviewResponse {
+    results: MovieReview[];
 }
