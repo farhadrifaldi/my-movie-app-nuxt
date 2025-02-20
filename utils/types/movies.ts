@@ -53,3 +53,12 @@ export const movies: movie[] = [{
     thumbnailLink: '/images/movie-sample-image.jpg',
     image: '/images/movie-sample-image.jpg'
 }]
+
+
+export interface TmdbResponse {
+    results: Movie[];
+}
+
+export interface TmdbGenreResponse {
+    results: Genre[]
+}
