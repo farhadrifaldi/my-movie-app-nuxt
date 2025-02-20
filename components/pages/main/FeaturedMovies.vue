@@ -24,7 +24,7 @@
 
 <script lang="ts" setup>
 import 'vue3-carousel/carousel.css'
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import { Carousel, Slide, Pagination } from 'vue3-carousel'
 import { movies } from '~/utils/types/movies';
 
 const { isMobile } = useDevice()
