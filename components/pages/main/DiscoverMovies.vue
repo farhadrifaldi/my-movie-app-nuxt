@@ -19,7 +19,7 @@
                         :to="`/movies/${movie.id}`" :rating="movie.vote_average.toString()" :title="movie.title"
                         :year="$dayjs(movie.release_date).format('YYYY')"
                         :genre="genreStore.getMappedGenres(movie.genre_ids, 1)"
-                        :image-path="TMDB_IMAGE_BASE_PATH + movie.poster_path" />
+                        :image-path="TMDB_IMAGE_BASE_PATH() + movie.poster_path" />
                 </div>
             </GeneralDbContent>
         </div>
