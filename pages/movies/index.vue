@@ -8,7 +8,7 @@
           <PagesMoviesFilter @on-change-genres="(val) => genres = val" @on-change-sort-by="(val) => sortBy = val" />
         </div>
         <div class="col-span-12 lg:col-span-9">
-          <PagesMoviesCards :movies="movies" @load-more="onLoadMore" />
+          <PagesMoviesCards :movies="movies" @load-more="onLoadMore" :is-loading="isLoading" :is-error="isError" />
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@ const fetcher = async (sortBy: string, page: number, genre: string[]): Promise<A
   }
 })
 
-const { data, isLoading } = useQuery({
+const { data, isLoading, isError } = useQuery({
   queryKey: ['discover-movies', sortBy, page, genres], queryFn: async ({ queryKey }): Promise<TmdbResponse> => {
     const { data } = await fetcher(queryKey[1].toString(), queryKey[2] as number, genres.value)
     return data
