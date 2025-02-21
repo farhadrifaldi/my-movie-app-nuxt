@@ -9,9 +9,11 @@
     </div>
     <div class="container mx-auto my-5">
       <p class="font-semibold text-red-600">REVIEWS</p>
-      <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
-        <MovieReview v-if="data" v-for="review in data.results.slice(0, 2)" :review="review" />
-      </div>
+      <GeneralDbContent :is-error="isError" :is-loading="isLoading" :is-dark="true">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
+          <MovieReview v-if="data" v-for="review in data.results.slice(0, 2)" :review="review" />
+        </div>
+      </GeneralDbContent>
     </div>
   </div>
 </template>
@@ -29,7 +31,7 @@ const fetcher = async (genres: string): Promise<AxiosResponse<TmdbMovieReviewRes
   }
 })
 
-const { data } = useQuery({
+const { data, isError, isLoading } = useQuery({
   queryKey: ['reviews', movie.id], queryFn: async ({ queryKey }): Promise<TmdbMovieReviewResponse> => {
     const { data } = await fetcher(queryKey[1] as string)
     return data
