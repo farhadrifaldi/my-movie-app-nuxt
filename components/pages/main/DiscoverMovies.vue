@@ -1,6 +1,7 @@
 <template>
     <div class="relative py-20">
         <div class="absolute top-0 left-0 w-full h-[450px] bg-[#292e36] -z-20">&nbsp;</div>
+
         <div class="container mx-auto">
             <div class="flex justify-between items-center mb-5">
                 <GeneralTitle level="4">Discover Movies</GeneralTitle>
@@ -12,14 +13,17 @@
                         Release Date</GeneralButton>
                 </div>
             </div>
-            <div class="grid grid-cols-2 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 gap-6">
-                <MovieCard v-if="data && data?.results.length > 0" v-for="movie in data?.results.slice(0, 10)"
-                    :to="`/movies/${movie.id}`" :rating="movie.vote_average.toString()" :title="movie.title"
-                    :year="$dayjs(movie.release_date).format('YYYY')"
-                    :genre="genreStore.getMappedGenres(movie.genre_ids, 1)"
-                    :image-path="TMDB_IMAGE_BASE_PATH + movie.poster_path" />
-            </div>
+            <GeneralDbContent :is-loading="isLoading" :is-error="isError">
+                <div class="grid grid-cols-2 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 gap-6">
+                    <MovieCard v-if="data && data?.results.length > 0" v-for="movie in data?.results.slice(0, 10)"
+                        :to="`/movies/${movie.id}`" :rating="movie.vote_average.toString()" :title="movie.title"
+                        :year="$dayjs(movie.release_date).format('YYYY')"
+                        :genre="genreStore.getMappedGenres(movie.genre_ids, 1)"
+                        :image-path="TMDB_IMAGE_BASE_PATH + movie.poster_path" />
+                </div>
+            </GeneralDbContent>
         </div>
+
     </div>
 </template>
 
@@ -39,7 +43,7 @@ const fetcher = async (sortBy: string): Promise<AxiosResponse<TmdbResponse, any>
 })
 
 
-const { data } = useQuery({
+const { data, isLoading, isError } = useQuery({
     queryKey: ['discover-movies', sortBy], queryFn: async ({ queryKey }): Promise<TmdbResponse> => {
         const { data } = await fetcher(queryKey[1])
         return data
