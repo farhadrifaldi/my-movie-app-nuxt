@@ -22,15 +22,15 @@
 <script lang="ts" setup>
 import { SortBy } from '~/utils/types/movies';
 
-
 const genreStore = useGenreStore()
+const { isMobile } = useDevice()
 
 const emit = defineEmits<{
   (e: 'onChangeSortBy', value: SortBy): void,
   (e: 'onChangeGenres', value: string[]): void
 }>();
 
-const open = ref<boolean>(false)
+const open = ref<boolean>(!isMobile)
 const checkedValue = ref<string[]>([])
 const selectedPopularity = ref<SortBy>()
 
