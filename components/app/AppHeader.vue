@@ -7,9 +7,10 @@ const { isMobile } = useDevice()
 const scrollY = ref(0)
 const store = useGenreStore()
 
+await useAsyncData('genres', () => store.fetchGenres())
+
 onMounted(() => {
     window.addEventListener('scroll', handleScroll);
-    store.fetchGenres()
 })
 
 onUnmounted(() => {
