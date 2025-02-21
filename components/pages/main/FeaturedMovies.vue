@@ -29,20 +29,10 @@
 <script lang="ts" setup>
 import 'vue3-carousel/carousel.css'
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
-import { type TmdbResponse } from '~/utils/types/movies';
-import { useQuery } from '@tanstack/vue-query'
-import axios, { type AxiosResponse } from 'axios';
+
+const { data } = useFetch('/api/movies/popular')
 
 const genreStore = useGenreStore()
-const fetcher = async (): Promise<AxiosResponse<TmdbResponse, any>> => await axios.get('/api/movies/popular')
-
-
-const { data } = useQuery({
-  queryKey: ['popular-movies'], queryFn: async (): Promise<TmdbResponse> => {
-    const { data } = await fetcher()
-    return data
-  }
-})
 
 const { isMobile } = useDevice()
 
