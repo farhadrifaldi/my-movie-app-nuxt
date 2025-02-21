@@ -1,9 +1,8 @@
-import axios, { type AxiosResponse } from "axios";
 import { defineStore } from "pinia";
 import { links } from "~/utils/constants/nagivations";
-import type { Genre, TmdbGenreResponse } from "~/utils/types/movies";
+import type { Genre } from "~/utils/types/movies";
 
-export const useGenreStore = defineStore('movie', {
+export const useGenreStore = defineStore('genre', {
     state: () => ({
         isLoading: false as boolean,
         genres: [] as Genre[]
@@ -26,13 +25,11 @@ export const useGenreStore = defineStore('movie', {
     },
     actions: {
         async fetchGenres() {
-            console.log('fetch here')
             this.isLoading = true
-            const { data, status } = await axios.get('/api/movies/genres') as AxiosResponse<TmdbGenreResponse>
-            console.log('halo', data, status)
-            if (status === 500) throw new Error("Error when fetch genres")
+            const get = await $fetch('/api/movies/genres')
+            if (!get) throw new Error("Error when fetch genres")
             this.isLoading = false
-            this.genres = data?.genres ?? []
+            this.genres = get?.genres ?? []
         }
     }
 })
